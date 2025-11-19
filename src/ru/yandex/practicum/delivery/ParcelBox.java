@@ -17,7 +17,6 @@ public class ParcelBox<T extends Parcel> {
             return;
         }
         this.parcels.add(parcel);
-        System.out.println("test");
     }
 
     public ArrayList<T> getAllParcels() {
