@@ -2,6 +2,7 @@ package ru.yandex.practicum.delivery;
 
 public class PerishableParcel extends Parcel {
     private final int timeToLive;
+    private static final int DELIVERY_COST_PERISHABLE = 3;
 
     public PerishableParcel(String description, int weight, String deliveryAddress, int sendDay, int timeToLive) {
         super(description, weight, deliveryAddress, sendDay);
@@ -9,11 +10,11 @@ public class PerishableParcel extends Parcel {
     }
 
     @Override
-    public int calculateDeliveryCost() {
-        return DELIVERY_COST_PERISHABLE*this.getWeight();
+    protected int getBaseCost() {
+        return DELIVERY_COST_PERISHABLE;
     }
 
     public boolean isExpired(int currentDay) {
-        return !(this.getSendDay() + this.timeToLive >= currentDay);
+        return !(this.sendDay + this.timeToLive >= currentDay);
     }
 }
